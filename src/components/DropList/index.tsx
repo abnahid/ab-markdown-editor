@@ -3,10 +3,11 @@ import React from 'react';
 interface DropListProps {
   show: boolean;
   onClose?: () => void;
+  children?: React.ReactNode;
 }
 
 class DropList extends React.Component<DropListProps, any> {
-  constructor(props: any) {
+  constructor(props: DropListProps) {
     super(props);
     this.handleClose = this.handleClose.bind(this);
   }
@@ -27,4 +28,5 @@ class DropList extends React.Component<DropListProps, any> {
     );
   }
 }
+
 export default DropList;
