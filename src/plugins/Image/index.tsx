@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Icon from '../../components/Icon';
 import i18n from '../../i18n';
-import { PluginComponent } from '../Plugin';
 import { isPromise } from '../../utils/tool';
 import getUploadPlaceholder from '../../utils/uploadPlaceholder';
+import { PluginComponent } from '../Plugin';
 import InputFile from './inputFile';
 
 interface State {
@@ -13,7 +13,7 @@ interface State {
 export default class Image extends PluginComponent<State> {
   static pluginName = 'image';
 
-  private inputFile: React.RefObject<InputFile>;
+  private inputFile: React.RefObject<InputFile | null>;
 
   constructor(props: any) {
     super(props);
@@ -71,12 +71,7 @@ export default class Image extends PluginComponent<State> {
         <Icon type="image" />
       </span>
     ) : (
-      <span
-        className="button button-type-image"
-        title={i18n.get('btnImage')}
-        onClick={this.handleImageUpload}
-        style={{ position: 'relative' }}
-      >
+      <span className="button button-type-image" title={i18n.get('btnImage')} onClick={this.handleImageUpload} style={{ position: 'relative' }}>
         <Icon type="image" />
         <InputFile
           accept={this.editorConfig.imageAccept || ''}

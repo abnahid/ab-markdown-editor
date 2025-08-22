@@ -8,7 +8,8 @@ export interface PreviewProps {
 }
 
 export abstract class Preview<T extends HTMLElement> extends React.Component<PreviewProps, any> {
-  protected el: React.RefObject<T>;
+  // FIXED LINE - changed from React.RefObject<T> to React.RefObject<T | null>
+  protected el: React.RefObject<T | null>;
 
   constructor(props: any) {
     super(props);
