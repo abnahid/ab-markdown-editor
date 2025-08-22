@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { PluginComponent } from './Plugin';
 
 export default class AutoResize extends PluginComponent {
@@ -34,7 +33,6 @@ export default class AutoResize extends PluginComponent {
     };
 
     this.timer = null;
-    // 如果渲染了编辑器，就以编辑器为准
     const view = this.editor.getView();
     const el = this.editor.getMdElement();
     const previewer = this.editor.getHtmlElement();
@@ -45,7 +43,6 @@ export default class AutoResize extends PluginComponent {
       }
       return;
     }
-    // 否则，以预览区域为准
     if (previewer && view.html) {
       resizeElement(previewer);
     }

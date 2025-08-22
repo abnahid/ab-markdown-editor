@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Icon from '../components/Icon';
 import i18n from '../i18n';
 import { PluginComponent } from './Plugin';
@@ -43,11 +42,7 @@ export default class FullScreen extends PluginComponent<FullScreenState> {
     if (this.editorConfig.canView && this.editorConfig.canView.fullScreen) {
       const { enable } = this.state;
       return (
-        <span
-          className="button button-type-fullscreen"
-          title={i18n.get(enable ? 'btnExitFullScreen' : 'btnFullScreen')}
-          onClick={this.handleClick}
-        >
+        <span className="button button-type-fullscreen" title={i18n.get(enable ? 'btnExitFullScreen' : 'btnFullScreen')} onClick={this.handleClick}>
           <Icon type={enable ? 'fullscreen-exit' : 'fullscreen'} />
         </span>
       );

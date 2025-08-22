@@ -1,3 +1,4 @@
+import DropList from './components/DropList/index';
 import Editor from './editor';
 import AutoResize from './plugins/autoResize';
 import BlockCodeBlock from './plugins/block/code-block';
@@ -17,11 +18,10 @@ import ListOrdered from './plugins/list/ordered';
 import ListUnordered from './plugins/list/unordered';
 import Logger from './plugins/logger';
 import ModeToggle from './plugins/modeToggle';
-import Table from './plugins/table';
-import TabInsert from './plugins/tabInsert';
-import { PluginComponent } from './plugins/Plugin';
 import type { PluginProps } from './plugins/Plugin';
-import DropList from './components/DropList/index';
+import { PluginComponent } from './plugins/Plugin';
+import TabInsert from './plugins/tabInsert';
+import Table from './plugins/table';
 
 // Register default plugins
 Editor.use(Header);
@@ -43,14 +43,9 @@ Editor.use(Logger);
 Editor.use(ModeToggle);
 Editor.use(FullScreen);
 
-// Export declarations
-// Export utility components
-export { DropList };
-export { PluginComponent };
-export type { PluginProps };
-// Export utility functions
 export { default as getDecorated } from './utils/decorate';
-// Export built-in plugins
+export { DropList, PluginComponent };
+export type { PluginProps };
 export const Plugins = {
   Header,
   FontBold,

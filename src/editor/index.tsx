@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { v4 as uuid } from 'uuid';
+import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import Icon from '../components/Icon';
 import NavigationBar from '../components/NavigationBar';
 import ToolBar from '../components/ToolBar';
@@ -240,7 +240,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
       if (typeof result[it.comp.align] === 'undefined') {
         result[it.comp.align] = [];
       }
-      const key = it.comp.pluginName === 'divider' ? uuid() : it.comp.pluginName;
+      const key = it.comp.pluginName === 'divider' ? uuidv4() : it.comp.pluginName;
       result[it.comp.align].push(
         React.createElement(it.comp, {
           editor: this,
@@ -514,9 +514,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
       };
     }
     if (type === 'tab' && curSelection.start !== curSelection.end) {
-      const curLineStart = this.getMdValue()
-        .slice(0, curSelection.start)
-        .lastIndexOf('\n') + 1;
+      const curLineStart = this.getMdValue().slice(0, curSelection.start).lastIndexOf('\n') + 1;
       this.setSelection({
         start: curLineStart,
         end: curSelection.end,
@@ -579,13 +577,13 @@ class Editor extends React.Component<EditorProps, EditorState> {
       undefined,
       newSelection
         ? {
-          start: newSelection.start + beforeContent.length,
-          end: newSelection.end + beforeContent.length,
-        }
+            start: newSelection.start + beforeContent.length,
+            end: newSelection.end + beforeContent.length,
+          }
         : {
-          start: selection.start,
-          end: selection.start,
-        },
+            start: selection.start,
+            end: selection.start,
+          },
     );
   }
 
@@ -684,7 +682,6 @@ class Editor extends React.Component<EditorProps, EditorState> {
   }
 
   private handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
-    // 遍历监听数组，找找有没有被监听
     for (const it of this.keyboardListeners) {
       if (isKeyMatch(e, it)) {
         e.preventDefault();
@@ -692,7 +689,6 @@ class Editor extends React.Component<EditorProps, EditorState> {
         return;
       }
     }
-    // 如果没有，触发默认事件
     this.emitter.emit(this.emitter.EVENT_KEY_DOWN, e);
   }
 
@@ -717,11 +713,6 @@ class Editor extends React.Component<EditorProps, EditorState> {
     }
   }
 
-  /**
-   * Listen events
-   * @param {EditorEvent} event Event type
-   * @param {any} cb Callback
-   */
   on(event: EditorEvent, cb: any) {
     const eventType = this.getEventType(event);
     if (eventType) {
@@ -729,11 +720,6 @@ class Editor extends React.Component<EditorProps, EditorState> {
     }
   }
 
-  /**
-   * Un-listen events
-   * @param {EditorEvent} event Event type
-   * @param {any} cb Callback
-   */
   off(event: EditorEvent, cb: any) {
     const eventType = this.getEventType(event);
     if (eventType) {
@@ -741,11 +727,6 @@ class Editor extends React.Component<EditorProps, EditorState> {
     }
   }
 
-  /**
-   * Set view property
-   * Can show or hide: editor, preview, menu
-   * @param {object} to
-   */
   setView(to: { md?: boolean; menu?: boolean; html?: boolean }) {
     const newView = { ...this.state.view, ...to };
     this.setState(
@@ -758,18 +739,10 @@ class Editor extends React.Component<EditorProps, EditorState> {
     );
   }
 
-  /**
-   * Get view property
-   * @return {object}
-   */
   getView() {
     return { ...this.state.view };
   }
 
-  /**
-   * Enter or exit full screen
-   * @param {boolean} enable
-   */
   fullScreen(enable: boolean) {
     if (this.state.fullScreen !== enable) {
       this.setState(
@@ -783,11 +756,6 @@ class Editor extends React.Component<EditorProps, EditorState> {
     }
   }
 
-  /**
-   * Register a plugin API
-   * @param {string} name API name
-   * @param {any} cb callback
-   */
   registerPluginApi(name: string, cb: any) {
     this.pluginApis.set(name, cb);
   }
@@ -796,12 +764,6 @@ class Editor extends React.Component<EditorProps, EditorState> {
     this.pluginApis.delete(name);
   }
 
-  /**
-   * Call a plugin API
-   * @param {string} name API name
-   * @param {any} others arguments
-   * @returns {any}
-   */
   callPluginApi<T = any>(name: string, ...others: any): T {
     const handler = this.pluginApis.get(name);
     if (!handler) {
@@ -810,10 +772,6 @@ class Editor extends React.Component<EditorProps, EditorState> {
     return handler(...others);
   }
 
-  /**
-   * Is full screen
-   * @return {boolean}
-   */
   isFullScreen(): boolean {
     return this.state.fullScreen;
   }

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Icon from '../components/Icon';
 import i18n from '../i18n';
 import { PluginComponent } from './Plugin';
@@ -24,20 +23,11 @@ class ModeToggle extends PluginComponent<ModeToggleState> {
   private get isDisplay() {
     const { canView } = this.editorConfig;
     if (canView) {
-      // 至少有两种情况可以显示的时候，才会显示切换按钮
       return [canView.html, canView.md, canView.both].filter((it) => it).length >= 2;
     }
     return false;
   }
 
-  /**
-   * 显示标准：
-   * 两个都显示的时候，点击显示MD，隐藏HTML
-   * 只显示HTML的时候，点击全部显示
-   * 只显示MD的时候，点击显示HTML，隐藏MD
-   * 如果当前标准因canView不可用，则顺延至下一个
-   * 如果都不可用，则返回当前状态
-   */
   private get next(): NEXT_ACTION {
     const { canView } = this.editorConfig;
     const { view } = this.state;
@@ -142,11 +132,7 @@ class ModeToggle extends PluginComponent<ModeToggleState> {
     if (this.isDisplay) {
       const display = this.getDisplayInfo();
       return (
-        <span
-          className="button button-type-mode"
-          title={i18n.get(`btnMode${display.title}`)}
-          onClick={this.handleClick}
-        >
+        <span className="button button-type-mode" title={i18n.get(`btnMode${display.title}`)} onClick={this.handleClick}>
           <Icon type={display.icon} />
         </span>
       );

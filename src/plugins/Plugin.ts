@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import type Editor from '../editor';
 import { EditorConfig } from '../share/var';
 
@@ -24,8 +24,6 @@ export abstract class PluginComponent<S = {}, P extends PluginProps = PluginProp
   }
 
   protected getConfig(key: string, defaultValue?: any) {
-    return typeof this.props.config[key] !== 'undefined' && this.props.config[key] !== null
-      ? this.props.config[key]
-      : defaultValue;
+    return typeof this.props.config[key] !== 'undefined' && this.props.config[key] !== null ? this.props.config[key] : defaultValue;
   }
 }

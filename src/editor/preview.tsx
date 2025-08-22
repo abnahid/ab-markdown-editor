@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 export type HtmlType = string | React.ReactElement;
 
@@ -40,18 +40,18 @@ export class HtmlRender extends Preview<HTMLDivElement> {
   render() {
     return typeof this.props.html === 'string'
       ? React.createElement('div', {
-        ref: this.el,
-        dangerouslySetInnerHTML: { __html: this.props.html },
-        className: this.props.className || 'custom-html-style',
-      })
-      : React.createElement(
-        'div',
-        {
           ref: this.el,
+          dangerouslySetInnerHTML: { __html: this.props.html },
           className: this.props.className || 'custom-html-style',
-        },
-        this.props.html,
-      );
+        })
+      : React.createElement(
+          'div',
+          {
+            ref: this.el,
+            className: this.props.className || 'custom-html-style',
+          },
+          this.props.html,
+        );
   }
 }
 

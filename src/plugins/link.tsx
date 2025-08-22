@@ -1,4 +1,4 @@
-import * as React from 'react';
+// import * as React from 'react';
 import Icon from '../components/Icon';
 import i18n from '../i18n';
 import { KeyboardEventListener } from '../share/var';
@@ -33,11 +33,7 @@ export default class Link extends PluginComponent {
 
   render() {
     return (
-      <span
-        className="button button-type-link"
-        title={i18n.get('btnLink')}
-        onClick={() => this.editor.insertMarkdown('link')}
-      >
+      <span className="button button-type-link" title={i18n.get('btnLink')} onClick={() => this.editor.insertMarkdown('link')}>
         <Icon type="link" />
       </span>
     );

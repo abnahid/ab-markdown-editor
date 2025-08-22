@@ -9,7 +9,6 @@ interface Decorated {
   };
 }
 
-// 最简单的Decorator，即在现有文字的基础上加上前缀、后缀即可
 const SIMPLE_DECORATOR: { [x: string]: [string, string] } = {
   bold: ['**', '**'],
   italic: ['*', '*'],
@@ -19,7 +18,6 @@ const SIMPLE_DECORATOR: { [x: string]: [string, string] } = {
   inlinecode: ['`', '`'],
   code: ['\n```\n', '\n```\n'],
 };
-// 插入H1-H6
 for (let i = 1; i <= 6; i++) {
   SIMPLE_DECORATOR[`h${i}`] = [`\n${repeat('#', i)} `, '\n'];
 }
@@ -73,13 +71,6 @@ function createTextDecorated(text: string, newBlock?: boolean): Decorated {
   };
 }
 
-/**
- * 获取装饰后的Markdown文本
- * @param target 原文字
- * @param type 装饰类型
- * @param option 附加参数
- * @returns {Decorated}
- */
 function getDecorated(target: string, type: string, option?: any): Decorated {
   if (typeof SIMPLE_DECORATOR[type] !== 'undefined') {
     return {
