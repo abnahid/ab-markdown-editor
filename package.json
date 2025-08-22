@@ -15,8 +15,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsup src/index.tsx --format cjs,esm --dts",
-    "dev": "tsup src/index.tsx --watch --format esm,cjs --dts",
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --watch --format esm,cjs --dts",
     "prepare": "npm run build",
     "lint": "eslint 'src/**/*.{ts,tsx}' --fix",
     "test": "echo \"No tests yet\""
