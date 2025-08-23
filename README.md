@@ -4,17 +4,18 @@
 [![NPM downloads][npm-downloads-image]][npm-url]
 [![MIT License][license-image]][license-url]
 
-✨ A modern, lightweight Markdown editor built for **React 19** and **Next.js 15**.
+✨ A modern, lightweight **Markdown editor** built for **React 19** and **Next.js 15**.  
+Developed and maintained by [Ab Nahid Agency](https://abnahid.com).
 
 ---
 
 ## Features
 
-- 🚀 Lightweight (\~20KB gzipped)
-- ⚛️ React 19 / Next.js 15 compatible
+- 🚀 Lightweight (~20KB gzipped)
+- ⚛️ Fully compatible with **React 19** and **Next.js 15**
 - 📝 Full Markdown support via [markdown-it](https://github.com/markdown-it/markdown-it)
-- 🔌 Pluggable toolbar & custom plugins
-- 🎨 Full control over UI (editor only, preview only, or both)
+- 🔌 Extensible toolbar & custom plugin support
+- 🎨 Flexible UI modes (editor only, preview only, or both)
 - 📸 Image upload & drag-and-drop support
 - 🔄 Synced scrolling between editor and preview
 - 📦 TypeScript support out of the box
@@ -23,7 +24,7 @@
 
 ## Demo
 
-👉 Online demo (soon)
+👉 Online demo (coming soon)  
 👉 Or run locally:
 
 ```bash
@@ -33,19 +34,19 @@ npm install
 npm run dev
 ```
 
+````
+
 ---
 
 ## Installation
 
 ```bash
 npm install @abnahid/ab-markdown-editor --save
-# or
-yarn add @abnahid/ab-markdown-editor
 ```
 
 ---
 
-## Basic usage
+## Basic Usage
 
 ```tsx
 import React from 'react';
@@ -64,13 +65,13 @@ export default function Example() {
 
 ---
 
-## Next.js / SSR usage
+## Next.js / SSR Usage
 
-This package is **client-side only**. In Next.js 15, wrap it with `dynamic` import:
+Since this package is **client-side only**, use `dynamic` import in **Next.js 15**:
 
 ```tsx
 import dynamic from 'next/dynamic';
-import 'react-markdown-editor-lite/lib/index.css';
+import '@abnahid/ab-markdown-editor/dist/index.css';
 
 const MdEditor = dynamic(() => import('@abnahid/ab-markdown-editor'), {
   ssr: false,
@@ -86,17 +87,20 @@ export default function Page() {
 ## Documentation
 
 - [Configuration](./docs/configure.md)
-- [API](./docs/api.md)
-- [Plugin development](./docs/plugin.md)
+- [API Reference](./docs/api.md)
+- [Plugin Development](./docs/plugin.md)
 
 ---
 
-## Authors
+## Author & Maintainer
 
-- Updated & maintained by: **[Ab Nahid](https://github.com/abnahid)**
+- **[Ab Nahid](https://github.com/abnahid)** – Founder & CEO, [Ab Nahid Agency](https://abnahid.com)
 
 ---
 
 ## License
 
-[MIT](LICENSE) © Ab Nahid Agency
+[MIT](LICENSE) © [Ab Nahid Agency](https://abnahid.com)
+
+
+````

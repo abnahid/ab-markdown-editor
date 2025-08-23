@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AB Markdown Editor - Modern Markdown Editor for React</title>
+
+    <!-- Dependencies -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/@abnahid/ab-markdown-editor/dist/index.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-jsx.min.js"></script>
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>AB Markdown Editor</h1>
+        <p class="tagline">A lightweight, powerful React markdown editor</p>
+        <div class="cta-buttons">
+          <a href="#examples" class="btn btn-primary">See Examples</a>
+          <a href="#installation" class="btn btn-outline">Get Started</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="section" id="features">
+      <div class="container">
+        <h2 class="section-title">Features</h2>
+        <div class="features">
+          <div class="feature">
+            <h3>Simple & Intuitive</h3>
+            <p>Clean interface with a toolbar containing all the essential formatting options.</p>
+          </div>
+          <div class="feature">
+            <h3>Live Preview</h3>
+            <p>See your formatted text instantly as you type with the side-by-side preview.</p>
+          </div>
+          <div class="feature">
+            <h3>Image Support</h3>
+            <p>Easily upload and insert images into your markdown content.</p>
+          </div>
+          <div class="feature">
+            <h3>Customizable</h3>
+            <p>Tailor the editor to your needs with various configuration options.</p>
+          </div>
+          <div class="feature">
+            <h3>Code Highlighting</h3>
+            <p>Syntax highlighting for code blocks in multiple languages.</p>
+          </div>
+          <div class="feature">
+            <h3>Table Support</h3>
+            <p>Create and edit tables directly in your markdown content.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="examples">
+      <div class="container">
+        <h2 class="section-title">Examples</h2>
+
+        <h3>Basic Example</h3>
+        <div class="editor-container">
+          <div class="editor-header">Basic Editor</div>
+          <div id="basic-editor" class="editor-wrapper"></div>
+        </div>
+
+        <h3>Code Example</h3>
+        <div class="editor-container">
+          <div class="editor-header">With Code Blocks</div>
+          <div id="code-editor" class="editor-wrapper"></div>
+        </div>
+
+        <h3>Custom Toolbar Example</h3>
+        <div class="editor-container">
+          <div class="editor-header">Custom Toolbar</div>
+          <div id="custom-editor" class="editor-wrapper"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="installation">
+      <div class="container">
+        <h2 class="section-title">Installation & Usage</h2>
+
+        <div class="installation">
+          <h3>Installation</h3>
+          <pre><code>npm install @abnahid/ab-markdown-editor</code></pre>
+
+          <h3>Basic Usage</h3>
+          <div class="code-block">
+            <pre><code class="language-jsx">import React, { useState } from 'react';
+import MarkdownEditor from '@abnahid/ab-markdown-editor';
+
+function MyEditor() {
+  const [markdown, setMarkdown] = useState('# Hello World');
+  
+  return (
+    &lt;MarkdownEditor
+      value={markdown}
+      onChange={setMarkdown}
+      style={{ height: '400px' }}
+    /&gt;
+  );
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="example-section">
+          <h3>Complete Example</h3>
+          <p>This example demonstrates all features including custom image upload and value handling.</p>
+          <div class="code-block">
+            <pre><code class="language-jsx">import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import ReactMarkdown from 'react-markdown';
+import MdEditor from '@abnahid/ab-markdown-editor';
+
+class Demo extends React.Component {
+  mdEditor = undefined;
+
+  constructor(props) {
+    super(props);
+    this.renderHTML = this.renderHTML.bind(this);
+    this.state = {
+      value: '# Hello',
+    };
+  }
+
+  handleEditorChange = (it, event) => {
+    this.setState({
+      value: it.text,
+    });
+  };
+
+  handleImageUpload = (file) => {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (data) => {
+        resolve(data.target.result);
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  onCustomImageUpload = (event) => {
+    return new Promise((resolve, reject) => {
+      const result = window.prompt('Please enter image url here...');
+      resolve({ url: result });
+    });
+  };
+
+  handleGetMdValue = () => {
+    if (this.mdEditor) {
+      alert(this.mdEditor.getMdValue());
+    }
+  };
+
+  handleGetHtmlValue = () => {
+    if (this.mdEditor) {
+      alert(this.mdEditor.getHtmlValue());
+    }
+  };
+
+  handleSetValue = () => {
+    const text = window.prompt('Content');
+    this.setState({
+      value: text,
+    });
+  };
+
+  renderHTML(text) {
+    return React.createElement(ReactMarkdown, {
+      source: text,
+    });
+  }
+
+  render() {
+    return (
+      &lt;div className="demo-wrap">
+        &lt;h3>AB Markdown Editor demo&lt;/h3>
+        &lt;nav className="nav">
+          &lt;button onClick={this.handleGetMdValue}>getMdValue&lt;/button>
+          &lt;button onClick={this.handleGetHtmlValue}>getHtmlValue&lt;/button>
+          &lt;button onClick={this.handleSetValue}>setValue&lt;/button>
+        &lt;/nav>
+        &lt;div className="editor-wrap">
+          &lt;MdEditor
+            ref={(node) => (this.mdEditor = node || undefined)}
+            value={this.state.value}
+            style={{ height: '500px', width: '100%' }}
+            renderHTML={this.renderHTML}
+            onChange={this.handleEditorChange}
+            onImageUpload={this.handleImageUpload}
+            onFocus={(e) => console.log('focus', e)}
+            onBlur={(e) => console.log('blur', e)}
+          />
+        &lt;/div>
+      &lt;/div>
+    );
+  }
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="api">
+      <div class="container">
+        <h2 class="section-title">API Reference</h2>
+
+        <div class="api-section">
+          <h3>Props</h3>
+          <table class="api-table">
+            <thead>
+              <tr>
+                <th>Prop</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>value</td>
+                <td>string</td>
+                <td>''</td>
+                <td>The markdown content</td>
+              </tr>
+              <tr>
+                <td>onChange</td>
+                <td>function(text)</td>
+                <td>required</td>
+                <td>Called when the content changes</td>
+              </tr>
+              <tr>
+                <td>renderHTML</td>
+                <td>function(text)</td>
+                <td>built-in</td>
+                <td>Custom HTML renderer function</td>
+              </tr>
+              <tr>
+                <td>style</td>
+                <td>object</td>
+                <td>{}</td>
+                <td>Styles for the editor container</td>
+              </tr>
+              <tr>
+                <td>className</td>
+                <td>string</td>
+                <td>''</td>
+                <td>Additional class for the editor</td>
+              </tr>
+              <tr>
+                <td>placeholder</td>
+                <td>string</td>
+                <td>'Start writing...'</td>
+                <td>Placeholder text when empty</td>
+              </tr>
+              <tr>
+                <td>plugins</td>
+                <td>string[]</td>
+                <td>All plugins</td>
+                <td>List of plugin names to use</td>
+              </tr>
+              <tr>
+                <td>config</td>
+                <td>object</td>
+                <td>{}</td>
+                <td>Configuration options</td>
+              </tr>
+              <tr>
+                <td>onImageUpload</td>
+                <td>function(file)</td>
+                <td>undefined</td>
+                <td>Called on image upload, returns Promise with image URL</td>
+              </tr>
+              <tr>
+                <td>onCustomImageUpload</td>
+                <td>function()</td>
+                <td>undefined</td>
+                <td>Custom image upload function, returns Promise</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="api-section">
+          <h3>Methods</h3>
+          <table class="api-table">
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>Parameters</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>getMdValue</td>
+                <td>none</td>
+                <td>Get the markdown text content</td>
+              </tr>
+              <tr>
+                <td>getHtmlValue</td>
+                <td>none</td>
+                <td>Get the rendered HTML content</td>
+              </tr>
+              <tr>
+                <td>insertMarkdown</td>
+                <td>(type, options)</td>
+                <td>Insert markdown text with various formatting</td>
+              </tr>
+              <tr>
+                <td>setSelection</td>
+                <td>(selection)</td>
+                <td>Set the cursor position/selection</td>
+              </tr>
+              <tr>
+                <td>getSelection</td>
+                <td>none</td>
+                <td>Get the current selection</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>Created by <a target="_blank" rel="noopener noreferrer" href="https://abnahid.com">AB Nahid</a> | Released under MIT License</p>
+        <p>&copy; 2025 - <a href="https://github.com/abnahid/ab-markdown-editor">GitHub Repository</a></p>
+      </div>
+    </footer>
+
+    <script src="./demo.js"></script>
+  </body>
+</html>

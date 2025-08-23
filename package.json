@@ -1,7 +1,7 @@
 {
   "name": "@abnahid/ab-markdown-editor",
   "version": "0.1.0",
-  "description": "A React 19 / Next.js 15 compatible Markdown editor",
+  "description": "@abnahid/ab-markdown-editor is a lightweight, developer-friendly Markdown editor fully compatible with React 19 and Next.js 15. Built for modern web apps, it offers seamless integration, fast performance, and customizable features to simplify content editing",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
   "unpkg": "lib/index.js",
@@ -11,26 +11,35 @@
     "esm",
     "lib",
     "preview",
+    "lib/index.css",
     "package.json",
     "README.md"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
-    "dev": "tsup src/index.ts --watch --format esm,cjs --dts",
-    "prepare": "npm run build",
-    "lint": "eslint 'src/**/*.{ts,tsx}' --fix",
-    "test": "echo \"No tests yet\""
+    "dev": "tsup src/index.tsx --watch --dts",
+    "build": "tsup src/index.tsx --dts --format cjs,esm && cp src/index.css lib/index.css",
+    "prod": "tsup src/index.tsx --dts --format cjs,esm --minify && cp src/index.css lib/index.css",
+    "test": "mocha",
+    "coverage": "nyc mocha",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/abnahid/ab-markdown-editor"
+    "url": "git+https://github.com/abnahid/ab-markdown-editor.git"
   },
   "keywords": [
     "markdown",
-    "editor",
+    "markdown editor",
     "react",
-    "react19",
-    "nextjs15"
+    "react 19",
+    "nextjs",
+    "nextjs 15",
+    "react markdown editor",
+    "nextjs markdown editor",
+    "rich text editor",
+    "lightweight markdown editor",
+    "ab markdown editor",
+    "abnahid markdown editor"
   ],
   "author": "Ab Nahid Agency",
   "license": "MIT",
