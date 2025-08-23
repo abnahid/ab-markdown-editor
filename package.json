@@ -1,6 +1,6 @@
 {
   "name": "@abnahid/ab-markdown-editor",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "@abnahid/ab-markdown-editor is a lightweight, developer-friendly Markdown editor fully compatible with React 19 and Next.js 15. Built for modern web apps, it offers seamless integration, fast performance, and customizable features to simplify content editing",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
