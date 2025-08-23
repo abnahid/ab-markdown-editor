@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 interface TableListProps {
   maxRow?: number;
@@ -88,15 +88,17 @@ class TableList extends React.Component<TableListProps, TableListState> {
   render() {
     return (
       <ul className="table-list wrap" style={this.calcWrapStyle()}>
-        {this.state.list.map((row, i) => row.map((col, j) => (
-          <li
-            className={`list-item ${col === 1 ? 'active' : ''}`}
-            key={`${i}-${j}`}
-            style={this.calcItemStyle(i, j)}
-            onMouseOver={this.handleHover.bind(this, i, j)}
-            onClick={this.handleSetTable.bind(this, i, j)}
-          />
-        )))}
+        {this.state.list.map((row, i) =>
+          row.map((col, j) => (
+            <li
+              className={`list-item ${col === 1 ? 'active' : ''}`}
+              key={`${i}-${j}`}
+              style={this.calcItemStyle(i, j)}
+              onMouseOver={this.handleHover.bind(this, i, j)}
+              onClick={this.handleSetTable.bind(this, i, j)}
+            />
+          )),
+        )}
       </ul>
     );
   }

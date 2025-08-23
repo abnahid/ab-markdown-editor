@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { PluginComponent } from '../Plugin';
 
 export default class Divider extends PluginComponent {

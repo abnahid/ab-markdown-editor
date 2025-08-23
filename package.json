@@ -1,27 +1,21 @@
 {
   "name": "@abnahid/ab-markdown-editor",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "@abnahid/ab-markdown-editor is a lightweight, developer-friendly Markdown editor fully compatible with React 19 and Next.js 15. Built for modern web apps, it offers seamless integration, fast performance, and customizable features to simplify content editing",
-  "main": "./cjs/index.js",
-  "module": "./esm/index.js",
-  "unpkg": "lib/index.js",
-  "jsdelivr": "lib/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "unpkg": "./dist/index.js",
+  "jsdelivr": "./dist/index.js",
   "files": [
-    "cjs",
-    "esm",
-    "lib",
-    "preview",
-    "lib/index.css",
-    "package.json",
+    "dist",
+    "LICENSE",
     "README.md"
   ],
   "scripts": {
     "dev": "tsup src/index.tsx --watch --dts",
-    "build": "tsup src/index.tsx --dts --format cjs,esm && cp src/index.css lib/index.css",
-    "prod": "tsup src/index.tsx --dts --format cjs,esm --minify && cp src/index.css lib/index.css",
-    "test": "mocha",
-    "coverage": "nyc mocha",
-    "prepare": "npm run build"
+    "build": "tsup",
+    "prod": "tsup --minify"
   },
   "repository": {
     "type": "git",
@@ -58,6 +52,7 @@
     "@types/react-dom": "^19.1.7",
     "@types/uuid": "^8.3.1",
     "@typescript-eslint/eslint-plugin": "^8.40.0",
+    "@typescript-eslint/parser": "^8.40.0",
     "chai": "^4.2.0",
     "eslint": "^8.57.1",
     "eslint-config-airbnb-typescript": "^12.3.1",
@@ -71,6 +66,7 @@
     "ignore-styles": "^5.0.1",
     "jsdom": "^16.2.2",
     "jsdom-global": "^3.0.2",
+    "less": "^4.4.1",
     "lint-staged": "^10.0.2",
     "markdown-it": "^8.4.2",
     "mocha": "^5.2.0",
@@ -111,7 +107,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.6.2",
-    "@typescript-eslint/parser": "^8.40.0",
     "classnames": "^2.5.1",
     "eventemitter3": "^5.0.1",
     "tsup": "^8.5.0",

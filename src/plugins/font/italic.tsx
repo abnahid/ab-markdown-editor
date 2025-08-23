@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Icon from '../../components/Icon';
 import i18n from '../../i18n';
 import { KeyboardEventListener } from '../../share/var';
@@ -33,11 +32,7 @@ export default class FontItalic extends PluginComponent {
 
   render() {
     return (
-      <span
-        className="button button-type-italic"
-        title={i18n.get('btnItalic')}
-        onClick={() => this.editor.insertMarkdown('italic')}
-      >
+      <span className="button button-type-italic" title={i18n.get('btnItalic')} onClick={() => this.editor.insertMarkdown('italic')}>
         <Icon type="italic" />
       </span>
     );

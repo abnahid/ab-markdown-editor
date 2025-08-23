@@ -1,5 +1,4 @@
 // Icon
-import * as React from 'react';
 
 interface IconProps {
   type: string;

@@ -4,13 +4,12 @@
  * see src/demo/index.tsx.
  */
 
-import * as React from 'react';
+import DropList from '../../components/DropList';
+import Icon from '../../components/Icon';
+import i18n from '../../i18n';
 import { KeyboardEventListener } from '../../share/var';
 import { PluginComponent } from '../Plugin';
-import DropList from '../../components/DropList';
-import i18n from '../../i18n';
 import TabMapList from './TabMapList';
-import Icon from '../../components/Icon';
 
 /**
  * @field tabMapValue:  Number of spaces will be inputted. Especially, note that 1 means a '\t' instead of ' '.
@@ -80,12 +79,7 @@ export default class TabInsert extends PluginComponent<TabInsertState> {
 
   render() {
     return (
-      <span
-        className="button button-type-header"
-        title={i18n.get('selectTabMap')}
-        onClick={this.show}
-        onMouseLeave={this.hide}
-      >
+      <span className="button button-type-header" title={i18n.get('selectTabMap')} onClick={this.show} onMouseLeave={this.hide}>
         <Icon type="tab" />
         <DropList show={this.state.show} onClose={this.hide}>
           <TabMapList value={this.state.tabMapValue} onSelectMapValue={this.handleChangeMapValue} />

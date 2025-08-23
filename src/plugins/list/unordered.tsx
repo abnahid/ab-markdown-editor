@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Icon from '../../components/Icon';
 import i18n from '../../i18n';
 import { KeyboardEventListener } from '../../share/var';
@@ -33,11 +32,7 @@ export default class ListUnordered extends PluginComponent {
 
   render() {
     return (
-      <span
-        className="button button-type-unordered"
-        title={i18n.get('btnUnordered')}
-        onClick={() => this.editor.insertMarkdown('unordered')}
-      >
+      <span className="button button-type-unordered" title={i18n.get('btnUnordered')} onClick={() => this.editor.insertMarkdown('unordered')}>
         <Icon type="list-unordered" />
       </span>
     );

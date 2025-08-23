@@ -1,4 +1,3 @@
-import * as React from 'react';
 import DropList from '../../components/DropList';
 import Icon from '../../components/Icon';
 import i18n from '../../i18n';
@@ -50,20 +49,10 @@ export default class Table extends PluginComponent<State, Props> {
   render() {
     const config = this.editorConfig.table || this.props.config;
     return (
-      <span
-        className="button button-type-table"
-        title={i18n.get('btnTable')}
-        onMouseEnter={this.show}
-        onMouseLeave={this.hide}
-      >
+      <span className="button button-type-table" title={i18n.get('btnTable')} onMouseEnter={this.show} onMouseLeave={this.hide}>
         <Icon type="grid" />
         <DropList show={this.state.show} onClose={this.hide}>
-          <TableList
-            visibility={this.state.show}
-            maxRow={config.maxRow}
-            maxCol={config.maxCol}
-            onSetTable={(option: any) => this.editor.insertMarkdown('table', option)}
-          />
+          <TableList visibility={this.state.show} maxRow={config.maxRow} maxCol={config.maxCol} onSetTable={(option: any) => this.editor.insertMarkdown('table', option)} />
         </DropList>
       </span>
     );

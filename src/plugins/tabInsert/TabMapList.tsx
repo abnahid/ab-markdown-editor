@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import * as React from 'react';
+import React from 'react';
 import i18n from '../../i18n';
 
 interface TabMapListProps {
@@ -27,9 +27,7 @@ class TabMapList extends React.Component<TabMapListProps, any> {
               active: value === it,
             })}
           >
-            <div onClick={this.handleSelectMapValue.bind(this, it)}>
-              {it === 1 ? i18n.get('tab') : `${it} ${i18n.get('spaces')}`}
-            </div>
+            <div onClick={this.handleSelectMapValue.bind(this, it)}>{it === 1 ? i18n.get('tab') : `${it} ${i18n.get('spaces')}`}</div>
           </li>
         ))}
       </ul>

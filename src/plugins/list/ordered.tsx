@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Icon from '../../components/Icon';
 import i18n from '../../i18n';
 import { KeyboardEventListener } from '../../share/var';
@@ -33,11 +32,7 @@ export default class ListOrdered extends PluginComponent {
 
   render() {
     return (
-      <span
-        className="button button-type-ordered"
-        title={i18n.get('btnOrdered')}
-        onClick={() => this.editor.insertMarkdown('order')}
-      >
+      <span className="button button-type-ordered" title={i18n.get('btnOrdered')} onClick={() => this.editor.insertMarkdown('order')}>
         <Icon type="list-ordered" />
       </span>
     );

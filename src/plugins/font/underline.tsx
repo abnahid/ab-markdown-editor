@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Icon from '../../components/Icon';
 import i18n from '../../i18n';
 import { KeyboardEventListener } from '../../share/var';
@@ -32,11 +31,7 @@ export default class FontUnderline extends PluginComponent {
 
   render() {
     return (
-      <span
-        className="button button-type-underline"
-        title={i18n.get('btnUnderline')}
-        onClick={() => this.editor.insertMarkdown('underline')}
-      >
+      <span className="button button-type-underline" title={i18n.get('btnUnderline')} onClick={() => this.editor.insertMarkdown('underline')}>
         <Icon type="underline" />
       </span>
     );

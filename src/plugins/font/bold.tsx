@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Icon from '../../components/Icon';
 import i18n from '../../i18n';
 import { KeyboardEventListener } from '../../share/var';
@@ -33,11 +32,7 @@ export default class FontBold extends PluginComponent {
 
   render() {
     return (
-      <span
-        className="button button-type-bold"
-        title={i18n.get('btnBold')}
-        onClick={() => this.editor.insertMarkdown('bold')}
-      >
+      <span className="button button-type-bold" title={i18n.get('btnBold')} onClick={() => this.editor.insertMarkdown('bold')}>
         <Icon type="bold" />
       </span>
     );

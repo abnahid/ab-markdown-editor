@@ -1,6 +1,6 @@
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render } from '@testing-library/react';
 import { expect } from 'chai';
-import * as React from 'react';
+import React from 'react';
 import Editor from '../src';
 
 const TextComponent = (props: { onClick: (ref: Editor) => void; value?: string }) => {
@@ -13,7 +13,7 @@ const TextComponent = (props: { onClick: (ref: Editor) => void; value?: string }
         Click
       </button>
       <label htmlFor="myeditor_md">My Editor</label>
-      <Editor ref={ref} id="myeditor" renderHTML={text => text} defaultValue={value || '123456'} />
+      <Editor ref={ref} id="myeditor" renderHTML={(text) => text} defaultValue={value || '123456'} />
     </div>
   );
 };
@@ -34,11 +34,7 @@ const doClick = (
     throw new Error('Not found textarea');
   }
 
-  textarea.setSelectionRange(
-    typeof options.start === 'undefined' ? 1 : options.start,
-    typeof options.end === 'undefined' ? 3 : options.end,
-    'forward',
-  );
+  textarea.setSelectionRange(typeof options.start === 'undefined' ? 1 : options.start, typeof options.end === 'undefined' ? 3 : options.end, 'forward');
 
   const btn = handler.container.querySelector('#click_handler');
   if (btn) {
@@ -56,7 +52,7 @@ const doClick = (
 };
 
 const next = (cb: any, time = 10) => {
-  return new Promise<void>(resolve => {
+  return new Promise<void>((resolve) => {
     setTimeout(() => {
       cb();
       resolve();
@@ -64,9 +60,9 @@ const next = (cb: any, time = 10) => {
   });
 };
 
-describe('Test API', function() {
+describe('Test API', function () {
   // getSelection
-  it('getSelection', function() {
+  it('getSelection', function () {
     let selected = '';
     const handleClick = (editor: Editor) => {
       selected = editor.getSelection().text;
@@ -76,7 +72,7 @@ describe('Test API', function() {
   });
 
   // setText with newSelection
-  it('setText', function() {
+  it('setText', function () {
     let selected = '';
     const handleClick = (editor: Editor) => {
       editor.setText('abcdefg', undefined, {
@@ -92,7 +88,7 @@ describe('Test API', function() {
   });
 
   // insertText
-  it('insertText 1', function() {
+  it('insertText 1', function () {
     let selected = '';
     const handleClick = (editor: Editor) => {
       editor.insertText('xx', true);
@@ -103,7 +99,7 @@ describe('Test API', function() {
     return next(() => expect(selected).to.equals(''));
   });
   // insertText
-  it('insertText 2', function() {
+  it('insertText 2', function () {
     let selected = '';
     const handleClick = (editor: Editor) => {
       editor.insertText('xx', false, {
@@ -118,7 +114,7 @@ describe('Test API', function() {
   });
 
   // insertMarkdown
-  it('insertMarkdown bold', function() {
+  it('insertMarkdown bold', function () {
     let selected = '';
     const handleClick = (editor: Editor) => {
       editor.insertMarkdown('bold');
@@ -130,7 +126,7 @@ describe('Test API', function() {
   });
 
   // insertMarkdown
-  it('insertMarkdown unordered', function() {
+  it('insertMarkdown unordered', function () {
     let selected = '';
     const handleClick = (editor: Editor) => {
       editor.insertMarkdown('unordered');
@@ -146,7 +142,7 @@ describe('Test API', function() {
   });
 
   // insertMarkdown
-  it('insertMarkdown table', function() {
+  it('insertMarkdown table', function () {
     let selected = '';
     const handleClick = (editor: Editor) => {
       editor.insertMarkdown('table', {
@@ -156,18 +152,17 @@ describe('Test API', function() {
       setTimeout(() => (selected = editor.getSelection().text));
     };
     const { textarea } = doClick(handleClick);
-    const expectTable =
-      '| Head | Head | Head | Head |\n| --- | --- | --- | --- |\n| Data | Data | Data | Data |\n| Data | Data | Data | Data |';
+    const expectTable = '| Head | Head | Head | Head |\n| --- | --- | --- | --- |\n| Data | Data | Data | Data |\n| Data | Data | Data | Data |';
     expect(textarea.value).to.equals('1\n' + expectTable + '\n\n456');
     return next(() => expect(selected).to.equals(''));
   });
 
   // insertPlaceholder
-  it('insertPlaceholder', function() {
+  it('insertPlaceholder', function () {
     const handleClick = (editor: Editor) => {
       editor.insertPlaceholder(
         '_placeholder_',
-        new Promise(resolve => {
+        new Promise((resolve) => {
           setTimeout(() => {
             resolve('_resolved_');
           }, 5);

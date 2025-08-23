@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Icon from '../../components/Icon';
 import i18n from '../../i18n';
 import { KeyboardEventListener } from '../../share/var';
@@ -33,11 +32,7 @@ export default class FontStrikethrough extends PluginComponent {
 
   render() {
     return (
-      <span
-        className="button button-type-strikethrough"
-        title={i18n.get('btnStrikethrough')}
-        onClick={() => this.editor.insertMarkdown('strikethrough')}
-      >
+      <span className="button button-type-strikethrough" title={i18n.get('btnStrikethrough')} onClick={() => this.editor.insertMarkdown('strikethrough')}>
         <Icon type="strikethrough" />
       </span>
     );
